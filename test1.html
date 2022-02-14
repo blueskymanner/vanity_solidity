@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<body>
+
+<h2>JavaScript Array Methods</h2>
+<h2>splice()</h2>
+<p>The splice() method adds new elements to an array.</p>
+<p id="demo"></p>
+
+<script>
+
+let len = [4, 3, 2, 5, 1, 4];
+// let size = len.length;
+// let sum = [];
+// let res = 0;
+
+// while(len.length > 1) {
+// 	for (let k=0; k < size-1; k++) {
+// 		sum[k] = [];
+// 		for (let i = 0; i < len.length-1; i++){
+// 		    sum[k].push( len[i] + len[i+1] );
+// 			console.log(sum[k]);
+// 		}
+
+// 		for (let j = 0; j < len.length-1; j++){
+// 		  if( Math.min(...sum[k]) === len[j]+len[j+1]){
+// 		    len.splice(j, 2, Math.min(...sum[k]));
+// 		    res += Math.min(...sum[k]);
+// 		    // break;
+// 		  }
+// 		}
+// 	}
+// }
+let total = 0;
+function connect(arr) {
+	// console.log(arr);
+	if (!arr || arr.length < 2) 
+		return;
+	// function bbb(val, index) {
+	// 	return val + arr[(index + 1 + arr.length) % arr.length]
+	// }
+	// res = arr.map(bbb)
+	res = arr.map((val, index) => {
+		return val + arr[(index + 1 + arr.length) % arr.length]
+	});
+	res.pop();
+	// console.log(res);
+	let min = Math.min(...res);
+	total += min;
+	arr.splice(res.indexOf(min), 2, min);
+	connect(arr);
+}
+	connect(len);
+	
+	document.getElementById("demo").innerHTML = total;
+
+</script>
+
+</body>
+</html>
+
+

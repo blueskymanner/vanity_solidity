@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Array Methods</h2>
+<p id="demo"></p>
+
+<script>
+
+let states = [1, 0, 1, 0, 1, 1];
+let num = 6;
+function ExcitedCells(steps, initialState) {
+
+	if (steps < 1) {
+		return initialState;
+	}
+	let newState = initialState.map((state, index) => {
+		let beforeIndex = (index + initialState.length - 1) % initialState.length;
+		let afterIndex = (index + initialState.length + 1) % initialState.length;
+		return initialState[beforeIndex] === initialState[afterIndex] ? 0 : 1; 
+	});
+	return ExcitedCells(steps - 1, newState);
+}
+	
+	document.getElementById("demo").innerHTML = ExcitedCells(num, states);
+
+</script>
+
+</body>
+</html>
+
+
+
+
+<!-- var input_string = readInputContent();
+var data = input_string.split('\n');
+
+var steps = data[0];
+var initialState = data[1].split(',').map(function (item) { return parseInt(item); });
+
+
+
+var result = ExcitedCells(steps, initialState).join(',');
+printOutput(result);
+ -->
