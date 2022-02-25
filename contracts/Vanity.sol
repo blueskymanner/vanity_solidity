@@ -71,7 +71,7 @@ contract Vanity is Ownable {
     @notice function to unregister name
     @param _name is user's unique vanity name
     */
-    function unregister(string memory _name) public ownerOf(_name) {
+    function unregister(string memory _name) public payable ownerOf(_name) {
         require(startTime[_name].add(lockTime) >= block.timestamp, "It's not expired time.");
 
         (bool sent, bytes memory data) = payable(msg.sender).call{value: balanceOf[msg.sender].sub(nameFee[msg.sender][_name])}("");
